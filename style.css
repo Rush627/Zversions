@@ -397,7 +397,9 @@ body.nav-active nav > .action-button {
     }
     
     .hero-section {
-        min-height: 60vh; /* Reduce height on mobile */
+        min-height: auto; /* Reduce height on mobile */
+        padding-top: 50px;
+        padding-bottom: 50px;
     }
 
     /* Stack the hero buttons vertically */
