@@ -400,6 +400,7 @@ body.nav-active nav > .action-button {
         min-height: auto; /* Reduce height on mobile */
         padding-top: 30px;
         padding-bottom: 30px;
+      background-color: red
     }
 
     /* Stack the hero buttons vertically */
