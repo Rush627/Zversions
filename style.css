@@ -1,0 +1,439 @@
+/* CSS Variables for Color Scheme */
+:root {
+  --z-red: #ca244d;
+  --z-white: #ffffff;
+  --z-light: #f9f9f9;
+  --z-dark: #333333;
+  --z-black: #000000;
+}
+
+/* Remove tap highlight color on mobile browsers */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Basic Setup */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--z-white);
+    color: var(--z-black);
+}
+
+/* Header Navigation */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 100;
+    
+    /* Change position to fixed and set coordinates */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.logo { height: 35px; transition: opacity 0.3s ease; }
+nav { display: flex; align-items: center; gap: 20px; }
+.menu-icon { width: 24px; height: 18px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+.menu-icon .bar { width: 100%; height: 3px; background-color: var(--z-black); }
+
+/* Main Hero Section */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    padding-top: 90px;
+}
+
+.background-text {
+    position: absolute;
+    top: 43%; /* This is the key change for vertical alignment */
+    left: 50%;
+    
+    /* The translate is now only for centering, not for nudging */
+    transform: translate(-50%, -50%) translateZ(-600px) scale(1.6) scaleY(1.1);
+
+    font-size: clamp(70px, 14vw, 120px);
+    text-align: center;
+    font-weight: bolder;
+    color: var(--z-black);
+    line-height: 1;
+    user-select: none;
+    opacity: 0.9;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Animation Container Styles */
+.animation-container {
+    width: 600px;
+    height: 600px;
+    position: relative;
+    z-index: 2;
+    perspective: 2500px; 
+    transform-style: preserve-3d;
+    transform: scale(1.2);
+}
+
+/* Card Styling (Glass Effect) */
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 450px;
+    
+    /* Glass Effect Start */
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* Glass Effect End */
+
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    padding-top: 8px;
+    transform-origin: center;
+    transform: translate(-50%, -50%);
+}
+
+.card-header {
+    padding-bottom: 8px;
+    text-align: left;
+}
+
+.dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; }
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+.card-content { background-color: var(--z-light); width: 100%; border-radius: 4px; overflow: hidden; }
+.card-content img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+/* Buttons */
+.action-button {
+    /* Solid color with a 3D effect */
+    background: linear-gradient(to bottom, #d94a6f, #ca244d); /* Subtle gradient from a lighter red to your main red */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Adds a "highlight" to the top edge */
+    box-shadow: 0 5px 15px rgba(141, 26, 53, 0.4); /* Shadow for depth */
+    
+    /* White text */
+    color: var(--z-white); 
+
+    /* Existing styles */
+    border-radius: 20px;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+}
+
+.hero-buttons { 
+    display: flex; 
+    gap: 15px; 
+    z-index: 2; 
+    transform: translateY(-15px);
+}
+
+.action-button:active {
+    transform: scale(0.97) translateY(2px); /* Makes the button look like it's being pressed */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2); /* Enhances the "pressed" effect */
+}
+
+/* =============== MENU BUTTON STYLES =============== */
+
+/* The circular glassmorphic ring */
+.menu-toggle-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0; /* Resets default button padding */
+
+    /* Glassmorphic effect */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+/* Base style for the hamburger bars for smooth animation */
+.menu-icon .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--z-dark);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Cross (X) Animation --- */
+
+/* Rotate top bar */
+.menu-icon.is-active .bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+/* Hide middle bar */
+.menu-icon.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+/* Rotate bottom bar */
+.menu-icon.is-active .bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* =============== FULLSCREEN NAVIGATION =============== */
+
+
+/* The main menu box container */
+.fullscreen-nav {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
+
+    /* Set size and rounded corners */
+    width: 92vw;
+    height: 88vh;
+    max-width: 1400px; /* Added for very large screens */
+    border-radius: 24px;
+
+    /* Glassmorphic Background */
+    background: rgba(245, 245, 245, 0.6);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* Hide by default and set up animation */
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -55%); /* Start centered horizontally, but higher up */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Show the menu when the body has the .nav-active class */
+body.nav-active .fullscreen-nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%); /* Move to final centered position */
+}
+
+/* Adjust padding for the new container size */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 7vh 8vw; /* Use responsive padding */
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+/* Hide logo and header button when nav is active */
+body.nav-active .logo,
+body.nav-active nav > .action-button {
+    opacity: 0;
+    pointer-events: none; /* Prevents clicking them while invisible */
+}
+
+
+/* New styles for the black dot before each main navigation link */
+.main-nav-dot {
+    display: inline-block;
+    width: 10px; /* Increased size for the dot */
+    height: 10px; /* Increased size for the dot */
+    border-radius: 50%;
+    background-color: var(--z-black); /* Using your defined black color */
+    margin-right: 20px; /* Increased space between dot and text */
+    vertical-align: middle; /* Align with text */
+    flex-shrink: 0; /* Prevent it from shrinking in flex container */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Added transition for dot */
+}
+
+/* Modify existing .main-nav-links and .main-nav-link styles */
+.main-nav-links {
+    list-style: none !important; /* Forcefully remove default list style */
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav-links li {
+    list-style: none !important; /* Ensure li elements also have no default list style */
+}
+
+/* Crucial: Forcefully remove any content generated by ::before or ::after pseudo-elements */
+.main-nav-links li::before,
+.main-nav-links li::after,
+.main-nav-links .main-nav-link::before,
+.main-nav-links .main-nav-link::after {
+    content: none !important; /* Forcefully remove any generated content */
+    display: none !important; /* Also forcefully hide them if content:none isn't enough */
+}
+
+
+.main-nav-link {
+    font-family: 'Nunito Sans', sans-serif; /* Using existing font */
+    font-size: clamp(10px, 5vw, 40px); /* Large responsive font size */
+    font-weight: 700; /* Bold weight as in image */
+    color: var(--z-black); /* Dark color for text */
+    text-decoration: none;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center dot, text, and arrow */
+    padding: 15px 0; /* Increased vertical spacing between links */
+    /* Added transitions for transform, opacity, filter for CSS hover effects */
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease, color 0.3s ease;
+}
+
+.main-nav-link:hover {
+    color: var(--z-red); /* Hover effect */
+    transform: translateX(15px); /* Move text right on hover */
+    opacity: 1; /* Ensure full opacity */
+    filter: blur(0px); /* Ensure no blur */
+}
+
+/* Modify existing .arrow-icon styles */
+.arrow-icon {
+    display: inline-block;
+    color: var(--z-black); /* Color of the arrow */
+    font-size: clamp(18px, 1.8vw, 28px); /* Responsive arrow size */
+    line-height: 1; /* Adjust vertical alignment */
+    transform: rotate(-45deg); /* Tilted arrow */
+    transform-origin: center center; /* Ensures correct rotation pivot */
+    /* Added transitions for transform, opacity for CSS hover effects */
+    transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+}
+
+.arrow-icon::after {
+    content: '\2192'; /* Unicode for right arrow character */
+}
+
+.main-nav-link:hover .arrow-icon {
+    transform: translateX(20px) rotate(-45deg); /* Move arrow further right on hover, maintaining tilt */
+    opacity: 1; /* Ensure full opacity */
+}
+
+/* CSS-ONLY EFFECT: Affects FOLLOWING siblings only */
+.main-nav-links .main-nav-link:hover ~ .main-nav-link {
+    transform: translateX(-10px); /* Move following siblings left */
+    opacity: 0.6; /* Fade following siblings */
+    filter: blur(0.5px); /* Subtle blur on following siblings */
+}
+
+/* CSS-ONLY EFFECT: Affects dots of FOLLOWING siblings */
+.main-nav-links .main-nav-link:hover ~ .main-nav-link .main-nav-dot {
+    transform: translateX(-5px); /* Move dots of following siblings left */
+    opacity: 0.6;
+}
+
+/* CSS-ONLY EFFECT: Affects arrows of FOLLOWING siblings */
+.main-nav-links .main-nav-link:hover ~ .main-nav-link .arrow-icon {
+    transform: translateX(-10px) rotate(-45deg); /* Move arrows of following siblings left, maintaining tilt */
+    opacity: 0.6;
+}
+
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+    .main-nav-link {
+        font-size: 8vw; /* Larger font size on mobile */
+    }
+    .main-nav-dot {
+        width: 8px; /* Slightly smaller dot on mobile */
+        height: 8px;
+        margin-right: 15px;
+    }
+    .arrow-icon {
+        font-size: 5vw; /* Larger arrow on mobile */
+        margin-left: 20px;
+    }
+}
+
+/* =============== RESPONSIVE STYLES =============== */
+
+/* --- Tablet Devices --- */
+@media (max-width: 1024px) {
+    /* Scale down the main animation to fit better */
+    .animation-container {
+        transform: scale(0.9);
+    }
+
+    /* Adjust nav menu padding */
+    .nav-container {
+        padding: 6vh 7vw;
+    }
+}
+
+
+/* --- Mobile Devices --- */
+@media (max-width: 768px) {
+
+    /* Header adjustments for smaller screens */
+    header {
+        padding: 15px 20px;
+    }
+
+    /* Hide the "Get started" button in the header on mobile to save space */
+    header nav > .action-button {
+        display: none;
+    }
+
+    /* Significantly scale down the animation to fit mobile screens */
+    .animation-container {
+        transform: scale(0.55);
+    }
+    
+    .hero-section {
+        min-height: 60vh; /* Reduce height on mobile */
+    }
+
+    /* Stack the hero buttons vertically */
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        transform: translateY(-70px);
+    }
+    
+
+    /* --- Responsive Navigation Menu --- */
+
+    /* Change nav menu to a single column layout */
+    .nav-container {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start; /* Align content to the left */
+        padding: 6vh 10px;
+    }
+    
+    .nav-right {
+        padding-top: 40px; /* Add space between main and sub-links */
+    }
+
+
+    .main-nav-link {
+        justify-content: flex-start; /* Align link content to the left */
+        font-size: 5vw;
+    }
+
+}
+
+/* --- Smaller Mobile Devices --- */
+@media (max-width: 480px) {
+    .animation-container {
+        transform: scale(0.45); /* Scale down even more for small phones */
+    }
+
+}
