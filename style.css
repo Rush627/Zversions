@@ -62,7 +62,7 @@ nav { display: flex; align-items: center; gap: 20px; }
     /* The translate is now only for centering, not for nudging */
     transform: translate(-50%, -50%) translateZ(-600px) scale(1.6) scaleY(1.1);
 
-    font-size: clamp(70px, 14vw, 120px);
+    font-size: clamp(60px, 22vw, 120px);
     text-align: center;
     font-weight: bolder;
     color: var(--z-black);
